@@ -1,17 +1,10 @@
-FROM python:2.7-slim
+FROM amancevice/pandas:0.21.0-python2-alpine
 LABEL "project.home"="https://github.com/BitBotFactory/poloniexlendingbot"
-
-#
-# Build: docker build -t <your_id>/pololendingbot .
-# Run: docker run -d -v /pololendingbot_data:/data -p 8000:8000 <your_id>/pololendingbot
-#
 
 WORKDIR /usr/src/app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r ./requirements.txt
 
-COPY . .
+RUN apk update && apk add --no-cache git ruby ruby-json py-requests && gem instal --no-document tiller && git clone https://github.com/mazhead/MikaLendingBot.git . && apk del git
 
 VOLUME /data
 
@@ -20,4 +13,4 @@ RUN ln -s /data/market_data market_data; \
 
 EXPOSE 8000
 
-CMD ["python", "lendingbot.py", "-cfg", "/data/conf/default.cfg"]
+CMD ["/usr/bin/tiller" , "-v"]

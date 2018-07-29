@@ -1,0 +1,93 @@
+---
+exec: [ 'python lendingbot.py -cfg /usr/src/app/default.cfg' ]
+data_sources: [ 'defaults' , 'file' , 'environment' ]
+template_sources: [ 'file' ]
+
+defaults:
+  default.erb:
+    exchange: 'Poloniex'
+    apikey: YourAPIKey
+    secret: YourSecret
+    poloniex_all_currencies: STR,BTC,BTS,CLAM,DOGE,DASH,LTC,MAID,XMR,XRP,ETH,FCT,#BTG
+    bitfinex_all_currencies: USD,BTC,BCH,ETH,XRP,IOT,XMR,LTC,OMG,ETC,EOS,DSH,ZEC,#BTG
+    label: Lending Bot
+    sleeptimeactive: 60
+    sleeptimeinactive: 300
+    timeout: 30
+    mindailyrate: 0.005
+    maxdailyrate: 5
+    spreadlend: 3
+    gapmode: RawBTC
+    gapbottom: 40
+    gaptop: 200
+    xdaythreshold: 0.2
+    xdays: 60
+    xdayspread: 2
+    minloansize: 0.01
+    keepstuckorders: True
+    hidecoins: True
+    enddate: #enddate = 2016,12,25
+    maxtolend: 0
+    maxpercenttolend: 0
+    maxtolendrate: 0
+    frrasmin: False
+    frrdelta: 0.0000
+    jsonfile: www/botlog.json
+    jsonlogsize: 200
+    startwebserver: True
+    customwebserveraddress: 0.0.0.0
+    customwebserverport: 8000
+    customwebservertemplate: www
+    outputcurrency: BTC
+    plugins: AccountStats,Charts
+    reportinterval: 86400
+    dumpinterval: 21600
+    historyfile: www/history.json
+    notify_new_loans: False
+    notify_tx_coins: False
+    notify_xday_threshold: False
+    notify_summary_minutes: 0
+    notify_caught_exception: False
+    notify_prefix:
+    email: False
+    email_login_address: me@gmail.com
+    email_login_password: secretpassword
+    email_smtp_server: smtp.gmail.com
+    email_smtp_port: 465
+    email_smtp_starttls: False
+    email_to_addresses: me@gmail.com,you@gmail.com
+    slack: False
+    slack_token: 1234567890abcdef
+    slack_channels: #cryptocurrency,@someuser
+    slack_username: poloniex bot
+    telegram: False
+    telegram_bot_id: 1234567890abcdef
+    telegram_chat_ids: '@polopolo,@cryptocurrency'
+    pushbullet: False
+    pushbullet_token: 1234567890abcdef
+    pushbullet_deviceid: 1234567890abcdef
+    irc: False
+    irc_host: irc.freenode.net
+    irc_port: 6667
+    irc_nick: lendingbot
+    irc_ident: Lendinbot
+    irc_realname: Poloniex lending bot
+    irc_target: #bitbotfactory
+    analysecurrencies: STR,BTC,BTS,CLAM,DOGE,DASH,LTC,MAID,XMR,XRP,ETH,FCT
+    lendingstyle: 75
+    macd_long_win_seconds: 1800
+    macd_short_win_seconds: 150
+    percentile_seconds: 259200
+    keep_history_seconds: 285120
+    recorded_levels: 10
+    data_tolerance: 15
+    delete_thread_sleep: 60
+    ma_debug_log: False
+    daily_min_method: 'MACD'
+    multiplier: 1.05
+
+
+environments:
+  development:
+    default.erb:
+      target: /usr/src/app/default.cfg
