@@ -8,9 +8,11 @@ RUN apk update && apk add --no-cache git ruby ruby-json py-requests && gem insta
 
 VOLUME /data
 
-RUN ln -s /data/market_data market_data; \
-    ln -s /data/log/botlog.json www/botlog.json
+RUN mv market_data market_data_git && \
+    ln -s /data/ market_data && \
+    touch /data/botlog.json && \
+    ln -s /data/botlog.json www/botlog.json
 
 EXPOSE 8000
 
-CMD ["/usr/bin/tiller" , "-v"]
+CMD ["/usr/bin/tiller", "-v", "-b", "/usr/src/app/tiller"]
