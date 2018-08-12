@@ -11,7 +11,8 @@ VOLUME /data
 RUN mv market_data market_data_git && \
     ln -s /data/ market_data && \
     cp /usr/src/app/default.cfg.example /usr/src/app/default.cfg && \
-    ln -s /data/botlog.json /usr/src/app/www/botlog.json
+    ln -s /data/botlog.json /usr/src/app/www/botlog.json && \
+    ln -s /data/history.json /usr/src/app/www/history.json
 
 EXPOSE 8000
 
